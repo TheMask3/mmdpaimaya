@@ -1,0 +1,83 @@
+import maya.cmds as cm
+
+cm.select(cl=True)
+joints = cm.ls(typ='joint')
+for j in joints:
+    cm.select(cl=True)
+    cm.select(j)
+    if ('name_jp' in cm.listAttr(j, ud = True)):
+        cm.deleteAttr(j + '.name_jp')
+    cm.addAttr(ln = 'name_jp', dt = "string", k = False)
+    
+    nameJP = unicode(j)
+    if u'L' in nameJP:
+        nameJP = nameJP.replace(u'L', u'')
+        nameJP = u'左' + nameJP
+    if u'R' in nameJP:
+        nameJP = nameJP.replace(u'R', u'')
+        nameJP = u'右' + nameJP
+    if u'front' in nameJP:
+        nameJP = nameJP.replace(u'front_', u'')
+        nameJP = nameJP.replace(u'front', u'')
+        nameJP = u'前' + nameJP
+    if u'back' in nameJP:
+        nameJP = nameJP.replace(u'back_', u'')
+        nameJP = nameJP.replace(u'back', u'')
+        nameJP = u'後' + nameJP
+    if u'upper' in nameJP:
+        nameJP = nameJP.replace(u'upper_', u'')
+        nameJP = nameJP.replace(u'upper', u'')
+        nameJP = u'上' + nameJP
+    if u'lower' in nameJP:
+        nameJP = nameJP.replace(u'lower_', u'')
+        nameJP = nameJP.replace(u'lower', u'')
+        nameJP = u'下' + nameJP
+    #nameJP = nameJP.replace(u'0', u'０')
+    #nameJP = nameJP.replace(u'1', u'１')
+    #nameJP = nameJP.replace(u'2', u'２')
+    #nameJP = nameJP.replace(u'3', u'３')
+    #nameJP = nameJP.replace(u'4', u'４')
+    #nameJP = nameJP.replace(u'5', u'５')
+    #nameJP = nameJP.replace(u'6', u'６')
+    #nameJP = nameJP.replace(u'7', u'７')
+    #nameJP = nameJP.replace(u'8', u'８')
+    #nameJP = nameJP.replace(u'9', u'９')
+    nameJP = nameJP.replace(u'root', u'')
+    nameJP = nameJP.replace(u'end', u'先')
+    nameJP = nameJP.replace(u'body', u'半身')
+    nameJP = nameJP.replace(u'coat', u'コート')
+    nameJP = nameJP.replace(u'hood', u'フード')
+    nameJP = nameJP.replace(u'hair', u'髪')
+    nameJP = nameJP.replace(u'breast', u'胸')
+    nameJP = nameJP.replace(u'nipple', u'乳首')
+    nameJP = nameJP.replace(u'main', u'メイン')
+    nameJP = nameJP.replace(u'braid', u'お下げ')
+    nameJP = nameJP.replace(u'halo', u'光輪')
+    nameJP = nameJP.replace(u'ctrl', u'コントローラー')
+    nameJP = nameJP.replace(u'pivot', u'支点')
+    nameJP = nameJP.replace(u'shoulder', u'肩')
+    nameJP = nameJP.replace(u'arm', u'腕')
+    nameJP = nameJP.replace(u'elbow', u'ひじ')
+    nameJP = nameJP.replace(u'wrist', u'手首')
+    nameJP = nameJP.replace(u'leg', u'足')
+    nameJP = nameJP.replace(u'knee', u'ひざ')
+    nameJP = nameJP.replace(u'ankle', u'足首')
+    nameJP = nameJP.replace(u'foottip', u'つま先')
+    nameJP = nameJP.replace(u'foot', u'足元')
+    nameJP = nameJP.replace(u'toe', u'足指')
+    nameJP = nameJP.replace(u'thumb', u'親指')
+    nameJP = nameJP.replace(u'index', u'人指')
+    nameJP = nameJP.replace(u'middle', u'中指')
+    nameJP = nameJP.replace(u'ring', u'薬指')
+    nameJP = nameJP.replace(u'pinky', u'小指')
+    nameJP = nameJP.replace(u'ahoge', u'アホ毛')
+    nameJP = nameJP.replace(u'eyebrow', u'眉')
+    nameJP = nameJP.replace(u'tongue', u'舌')
+    nameJP = nameJP.replace(u'teeth', u'歯')
+    nameJP = nameJP.replace(u'neck', u'首')
+    nameJP = nameJP.replace(u'head', u'頭')
+    nameJP = nameJP.replace(u'_', u' ')
+    nameJP = nameJP.replace(u'  ', u' ')
+    nameJP = nameJP.replace(u' 先', u'先')
+    cm.setAttr(j + '.name_jp', nameJP, typ="string")
+    print nameJP
